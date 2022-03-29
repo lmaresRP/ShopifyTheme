@@ -18,14 +18,29 @@
   }
 {%- endstyle -%}
 
-<div class="faq-section page-width--narrow section-{{ section.id }}-padding">
-  <h1 class="faq-page-title page-title h0">
-    {{ section.settings.heading | escape }}
-  </h1>
-  <div class="description">
-    {{ section.settings.description | escape }}
+<div class="faq--page">
+  <div class="faq--page__header page-width--narrow section-{{ section.id }}-padding">
+    <h1 class="faq--page__header-title page-title h0">
+      {{ section.settings.heading | escape }}
+    </h1>
+    <div class="faq--page__header-description">
+      {{ section.settings.description | escape }}
+    </div>
+  </div>
+  <div class="faq--page__blocks">
+    {%- for block in section.blocks -%}
+      <div class="faq--page__blocks-container">
+        <h2 class="faq--page__blocks-question">
+          {{ block.shopify_attributes }}>{{ block.settings.question | escape }}
+        </h2>
+        <p class="faq--page__blocks-answer">
+          {{ block.shopify_attributes }}>{{ block.settings.answer | escape }}
+        </p>
+      </div>
+    {%- endfor -%}
   </div>
 </div>
+
 
 {% schema %}
 {
