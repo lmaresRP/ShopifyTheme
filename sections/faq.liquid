@@ -18,12 +18,12 @@
   }
 {%- endstyle -%}
 
-<div class="page-width page-width--narrow section-{{ section.id }}-padding">
-  <h1 class="main-page-title page-title h0">
-    {{ page.title | escape }}
+<div class="faq-section page-width--narrow section-{{ section.id }}-padding">
+  <h1 class="faq-page-title page-title h0">
+    {{ section.settings.heading | escape }}
   </h1>
-  <div class="rte">
-    {{ page.content }}
+  <div class="description">
+    {{ section.settings.description | escape }}
   </div>
 </div>
 
@@ -33,6 +33,18 @@
   "tag": "section",
   "class": "section",
   "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "FAQ Page",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "default": "Frequently Asked Questions",
+      "label": "Description"
+    },
     {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"
