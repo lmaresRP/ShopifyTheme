@@ -2190,6 +2190,25 @@
         }
       }
     },
+    "faq": {
+      "name": "FAQ",
+      "blocks": {
+        "question-and-answer": {
+          "name": "Question and Answer",
+          "settings": {
+            "question": {
+              "label": "Question"
+            },
+            "answer": {
+              "label": "Answer"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Question and Answer"
+      }
+    },
     "rich-text": {
       "name": "Rich text",
       "settings": {
