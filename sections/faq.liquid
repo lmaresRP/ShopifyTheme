@@ -72,28 +72,21 @@
   ],
   "blocks": [
     {
-      "type": "question",
-      "name": "t:sections.faq.blocks.question.name",
+      "type": "question-and-answer",
+      "name": "t:sections.faq.blocks.question-and-answer.name",
       "limit": 1,
       "settings": [
         {
           "type": "text",
           "id": "question",
           "default": "This is a question?",
-          "label": "t:sections.faq.blocks.question.settings.question.label"
-        }
-      ]
-    },
-    {
-      "type": "answer",
-      "name": "t:sections.faq.blocks.answer.name",
-      "limit": 1,
-      "settings": [
+          "label": "t:sections.faq.blocks.question-and-answer.settings.question.label"
+        },
         {
           "type": "text",
           "id": "answer",
-          "default": "This is an answer??",
-          "label": "t:sections.faq.blocks.answer.settings.answer.label"
+          "default": "This is an answer?",
+          "label": "t:sections.faq.blocks.question-and-answer.settings.answer.label"
         }
       ]
     }
@@ -103,10 +96,7 @@
       "name": "t:sections.faq.presets.name",
       "blocks": [
         {
-          "type": "question"
-        },
-        {
-          "type": "answer"
+          "type": "question-and-answer"
         }
       ]
     }
