@@ -18,18 +18,18 @@
   }
 {%- endstyle -%}
 
-<div class="faq--page">
+<div class="faq--page color-{{ section.settings.color_scheme }}">
   <div class="faq--page__header page-width--narrow section-{{ section.id }}-padding">
-    <h1 class="faq--page__header-title h0">
+    <h1 class="faq--page__header-title h0 color-{{ section.settings.color_scheme }}">
       {{ section.settings.heading | escape }}
     </h1>
-    <h2 class="faq--page__header-description">
+    <h2 class="faq--page__header-description color-{{ section.settings.color_scheme }}">
       {{ section.settings.description | escape }}
     </h2>
   </div>
   <div class="faq--page__blocks">
     {%- for block in section.blocks -%}
-      {% render 'question-answer', question: block.settings.question, answer: block.settings.answer %}
+      {% render 'question-answer', question: block.settings.question, answer: block.settings.answer, color: section.settings.color_scheme %}
     {%- endfor -%}
   </div>
 </div>
@@ -76,7 +76,31 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
-    }
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "green",
+          "label": "t:sections.all.colors.green.label"
+        },
+        {
+          "value": "blue",
+          "label": "t:sections.all.colors.blue.label"
+        },
+        {
+          "value": "magenta",
+          "label": "t:sections.all.colors.magenta.label"
+        },
+        {
+          "value": "black",
+          "label": "t:sections.all.colors.background_2.label"
+        }
+      ],
+      "default": "green",
+      "label": "t:sections.all.colors.label"
+    },
   ],
   "blocks": [
     {

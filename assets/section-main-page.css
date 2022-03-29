@@ -22,11 +22,27 @@
   height: 52.5rem;
 }
 
-.faq--page__header-title, 
+/* .faq--page__header-title, 
 .faq--page__header-description,
 .faq--page__blocks-question,
 .faq--page__blocks-answer {
   color: #008000;
+} */
+
+.color-green {
+  color: #008000;
+}
+
+.color-blue {
+  color: #0000ff;
+}
+
+.color-magenta {
+  color: #ff00ff;
+}
+
+.color-black {
+  color: #000000;
 }
 
 .faq--page {

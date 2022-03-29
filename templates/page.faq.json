@@ -13,7 +13,8 @@
         "padding_top": 28,
         "padding_bottom": 28,
         "heading": "FAQ Page is Here!",
-        "description": "Here are some frequently asked questions!"
+        "description": "Here are some frequently asked questions!",
+        "color-scheme": "green"
       }
     }
   },
