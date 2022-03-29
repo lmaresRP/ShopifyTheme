@@ -22,9 +22,10 @@
   height: 52.5rem;
 }
 
-.faq--page,
-.faq--page__header, 
-.faq--page__blocks {
+.faq--page__header-title, 
+.faq--page__header-description,
+.faq--page__blocks-question,
+.faq--page__blocks-answer {
   color: #008000;
 }
 
