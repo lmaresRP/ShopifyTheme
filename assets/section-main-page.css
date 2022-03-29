@@ -22,11 +22,8 @@
   height: 52.5rem;
 }
 
-.page-width--narrow {
+.faq--page {
+  color: #008000 !important;
   padding-left: 3rem;
   padding-right: 3rem;
-}
-
-.faq--page {
-  color: #008000;
 }
