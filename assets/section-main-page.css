@@ -22,8 +22,13 @@
   height: 52.5rem;
 }
 
+.faq--page,
+.faq--page__header, 
+.faq--page__blocks {
+  color: #008000;
+}
+
 .faq--page {
-  color: #008000 !important;
-  padding-left: 3rem;
-  padding-right: 3rem;
+  padding-left: 5rem;
+  padding-right: 5rem;
 }
