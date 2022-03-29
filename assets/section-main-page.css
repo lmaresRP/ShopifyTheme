@@ -21,3 +21,12 @@
   width: 52.5rem;
   height: 52.5rem;
 }
+
+.page-width--narrow {
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.faq--page {
+  color: #008000;
+}
