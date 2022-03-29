@@ -29,7 +29,7 @@
   </div>
   <div class="faq--page__blocks">
     {%- for block in section.blocks -%}
-      {% render 'question-answer', question: block.settings.question, answer: block.settings.answer, color: section.settings.color_scheme %}
+      {% render 'question-answer', question: block.settings.question, answer: block.settings.answer, color: block.settings.color_scheme %}
     {%- endfor -%}
   </div>
 </div>
