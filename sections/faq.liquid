@@ -31,10 +31,10 @@
     {%- for block in section.blocks -%}
       <div class="faq--page__blocks-container">
         <h2 class="faq--page__blocks-question">
-          {{ block.shopify_attributes }}>{{ block.settings.question | escape }}
+          {{ block.settings.question | escape }}
         </h2>
         <p class="faq--page__blocks-answer">
-          {{ block.shopify_attributes }}>{{ block.settings.answer | escape }}
+          {{ block.settings.answer | escape }}
         </p>
       </div>
     {%- endfor -%}
