@@ -51,25 +51,25 @@ div.single-block > * {
     {% case block.type %}
 
       {%- when 'heading' -%}
-        <h2 class="single-image__heading ">
+        <h2 class="single-block__heading ">
           {{ block.settings.heading | escape }}
         </h2>
 
       {%- when 'caption' -%}
-        <h3 class="single-image__caption">{{ block.settings.caption | escape }}</h3>
+        <h3 class="single-block__caption">{{ block.settings.caption | escape }}</h3>
 
-      {%- when 'image' -%}
+      {%- when 'block_image' -%}
         <div class="single-block-image 
-        {% if block.settings.image != blank %} 
+        {% if block.settings.block_image != blank %} 
           media
         {% else %}
           placeholder"
         {% endif %}>
 
-          {%- if block.settings.image != blank -%}
-            {{ block.settings.image | image_url: width: 2048 }}
+          {%- if block.settings.block_image != blank -%}
+            {{ block.settings.block_image | image_url: width: 2048 }}
           {%- else -%}
-            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {{ 'block_image' | placeholder_svg_tag: 'placeholder-svg' }}
           {%- endif -%}
         </div>
 
@@ -151,13 +151,13 @@ div.single-block > * {
       ]
     },
     {
-      "type": "image",
+      "type": "block_image",
       "name": "Image",
       "limit": 1,
       "settings": [
         {
           "type": "image_picker",
-          "id": "image",
+          "id": "block_image",
           "label": "Image"
         }
       ]
@@ -193,7 +193,7 @@ div.single-block > * {
           "type": "caption"
         },
         {
-          "type": "image"
+          "type": "block_image"
         },
         {
           "type": "button"
