@@ -20,6 +20,7 @@
 div.single-block > * {
   text-align: center;
   margin: 0 auto;
+  margin-bottom: 15px;
 }
 
 .single-block-image {
@@ -48,12 +49,34 @@ div.single-block > * {
 
   {%- for block in section.blocks -%}
     {% case block.type %}
+
       {%- when 'heading' -%}
         <h2 class="single-image__heading ">
           {{ block.settings.heading | escape }}
         </h2>
+
       {%- when 'caption' -%}
         <h3 class="single-image__caption">{{ block.settings.caption | escape }}</h3>
+
+      {%- when 'image' -%}
+        <div class="single-block-image 
+        {% if block.settings.block_image != blank %} 
+          media
+        {% else %}
+          placeholder"
+        {% endif %}>
+
+          {%- if block.settings.block_image != blank -%}
+            <img src="{{ block.settings.block_image | image_url: width: 980 }}"
+            alt="{{ block.settings.block_image.alt | escape }}"
+            loading="lazy"
+            width="{{ block.settings.block_image.width }}"
+            height="{{ block.settings.block_image.height }}"
+          >
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
 
       {%- when 'button' -%}
         <div class="single-block__btn">
@@ -72,29 +95,11 @@ div.single-block > * {
           {% endif %}">
             {{ block.settings.button_label | escape }}
           </a>
-        {%- endif -%}
+          {%- endif -%}
         </div>
-        
     {%- endcase -%}
   {%- endfor -%}
-
-  <div class="single-block-image single-image__media--placeholder placeholder">
-    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-  </div>
 </div>
-
-    <!-- {
-      "type": "single-block-image",
-      "name": "Image",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "single-block-image",
-          "label": "Image"
-        }
-      ]
-    }, -->
 
 {% schema %}
 {
@@ -151,22 +156,34 @@ div.single-block > * {
       ]
     },
     {
+      "type": "image",
+      "name": "Image",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "block_image",
+          "label": "Image"
+        }
+      ]
+    },
+    {
       "type": "button",
       "name": "Button",
       "limit": 1,
       "settings": [
-          {
-            "type": "text",
-            "id": "button_label",
-            "default": "Button label",
-            "label": "Button Label",
-            "info": "Type in what you want your button to be named"
-          },
-          {
-            "type": "url",
-            "id": "button_link",
-            "label": "Button Link"
-          }
+        {
+          "type": "text",
+          "id": "button_label",
+          "default": "Button label",
+          "label": "Button Label",
+          "info": "Type in what you want your button to be named"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
       ]
     }
   ],
