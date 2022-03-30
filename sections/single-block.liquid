@@ -67,7 +67,7 @@ div.single-block > * {
         {% endif %}>
 
           {%- if block.settings.image != blank -%}
-            <img src="{{ block.settings.image | image_url }}" alt="img"/>
+            {{ block.settings.image | image_url: width: 2048 }}
           {%- else -%}
             {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
           {%- endif -%}
