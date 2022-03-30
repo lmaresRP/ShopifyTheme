@@ -38,7 +38,7 @@ div.single-block > * {
 
 <div class="single-block section-{{ section.id }}-padding page-width">
   {% for block in section.blocks %}
-    {% case block.type %}
+    
 
     <div class="single-block__icon">
       {% render 'icon-shell' %}
@@ -69,7 +69,7 @@ div.single-block > * {
           {{ block.settings.button_label | escape }}
         </a>
       {%- endif -%}
-    {%- endcase -%}
+    
   {% endfor %}
 </div>
 
