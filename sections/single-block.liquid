@@ -23,8 +23,9 @@ div.single-block > * {
 }
 
 .single-block-image {
-  width: 980px;
-  height: 438px;
+  width: 100%;
+  height: auto;
+  max-width: 980px;
   margin: 0 auto;
 }
 
@@ -32,6 +33,10 @@ div.single-block > * {
   display: block;
   width: 75px;
   height: 75px;
+}
+
+.single-block__btn {
+  display: block;
 }
 
 {%- endstyle -%}
@@ -51,7 +56,8 @@ div.single-block > * {
         <h3 class="single-image__caption">{{ block.settings.caption | escape }}</h3>
 
       {%- when 'button' -%}
-        {%- if block.settings.button_label != blank -%}
+        <div class="single-block__btn">
+          {%- if block.settings.button_label != blank -%}
           <a
           {% if block.settings.button_link == blank %} 
             role="link" aria-disabled="true"
@@ -67,12 +73,14 @@ div.single-block > * {
             {{ block.settings.button_label | escape }}
           </a>
         {%- endif -%}
-      {%- endcase -%}
-    {%- endfor -%}
+        </div>
+        
+    {%- endcase -%}
+  {%- endfor -%}
 
-    <div class="single-block-image single-image__media--placeholder placeholder">
-      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-    </div>
+  <div class="single-block-image single-image__media--placeholder placeholder">
+    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+  </div>
 </div>
 
     <!-- {
