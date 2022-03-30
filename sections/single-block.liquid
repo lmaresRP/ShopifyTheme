@@ -16,11 +16,22 @@
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
 }
+
+.single-block__icon {
+  display: block;
+  width: 50px;
+  height:50px;
+  margin: 0 auto;
+}
+
 {%- endstyle -%}
 
 <div class="single-block">
   <div class="single-block__header">
-    {% render 'icon-shell' %}
+    <div class="single-block__icon">
+      {% render 'icon-shell' %}
+    </div>
+    
     {% for block in section.blocks %}
       {% case block.type %}
         {%- when 'heading' -%}
