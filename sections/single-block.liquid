@@ -59,19 +59,13 @@ div.single-block > * {
         <h3 class="single-block__caption">{{ block.settings.caption | escape }}</h3>
 
       {%- when 'block_image' -%}
-        <div class="single-block-image 
-        {% if block.settings.block_image != blank %} 
-          media
-        {% else %}
-          placeholder"
-        {% endif %}
-        >
+        <div class="single-block-image {% if block.settings.block_image != blank %} media {% else %}placeholder"{% endif %}>
 
           {%- if block.settings.block_image != blank -%}
             {{ block.settings.block_image | image_url: width: 2048 }}
           {%- else -%}
             {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-            <img src="{{ block.settings.blcok_image | image_url }}" alt="img"/>
+            <img src="{{ block.settings.block_image | image_url }}" alt="img"/>
           {%- endif -%}
         </div>
 
