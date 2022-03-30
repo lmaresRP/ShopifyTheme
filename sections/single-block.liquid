@@ -60,19 +60,17 @@ div.single-block > * {
 
       {%- when 'image' -%}
         <div class="single-block-image 
-        {% if block.settings.block_image != blank %} 
+        {% if block.settings.image != blank %} 
           media
         {% else %}
           placeholder"
         {% endif %}>
 
-          {%- if block.settings.block_image != blank -%}
-            <img src="{{ block.settings.block_image | image_url: width: 980 }}"
-            alt="{{ block.settings.block_image.alt | escape }}"
+          {%- if block.settings.image != blank -%}
+            <img src="{{ block.settings.image | image_url: width: 980 }}"
+            alt="{{ block.settings.image.alt | escape }}"
             loading="lazy"
-            width="{{ block.settings.block_image.width }}"
-            height="{{ block.settings.block_image.height }}"
-          >
+            >
           {%- else -%}
             {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
           {%- endif -%}
@@ -162,7 +160,7 @@ div.single-block > * {
       "settings": [
         {
           "type": "image_picker",
-          "id": "block_image",
+          "id": "image",
           "label": "Image"
         }
       ]
@@ -196,6 +194,9 @@ div.single-block > * {
         },
         {
           "type": "caption"
+        },
+        {
+          "type": "image"
         },
         {
           "type": "button"
