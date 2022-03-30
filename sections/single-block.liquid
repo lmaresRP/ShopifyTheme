@@ -37,41 +37,42 @@ div.single-block > * {
 {%- endstyle -%}
 
 <div class="single-block section-{{ section.id }}-padding page-width">
-  {% for block in section.blocks %}
-    <div class="single-block__icon">
-      {% render 'icon-shell' %}
-    </div>
-    {% case block.type %}
-    {%- when 'heading' -%}
-      <h2 class="single-image__heading ">
-        {{ block.settings.heading | escape }}
-      </h2>
-    {%- when 'caption' -%}
-      <h3 class="single-image__caption">{{ block.settings.caption | escape }}</h3>
+  <div class="single-block__icon">
+    {% render 'icon-shell' %}
+  </div>
 
-    {%- when 'button' -%}
-      {%- if block.settings.button_label != blank -%}
-        <a
-        {% if block.settings.button_link == blank %} 
-          role="link" aria-disabled="true"
-        {% else %} 
-          href="{{ block.settings.button_link }}"
-        {% endif %} 
-        class="button
-        {% if block.settings.button_style_secondary %} 
-          button--secondary
-        {% else %} 
-          button--primary
-        {% endif %}">
-          {{ block.settings.button_label | escape }}
-        </a>
-      {%- endif -%}
-    {%- endcase -%}
+  {%- for block in section.blocks -%}
+    {% case block.type %}
+      {%- when 'heading' -%}
+        <h2 class="single-image__heading ">
+          {{ block.settings.heading | escape }}
+        </h2>
+      {%- when 'caption' -%}
+        <h3 class="single-image__caption">{{ block.settings.caption | escape }}</h3>
+
+      {%- when 'button' -%}
+        {%- if block.settings.button_label != blank -%}
+          <a
+          {% if block.settings.button_link == blank %} 
+            role="link" aria-disabled="true"
+          {% else %} 
+            href="{{ block.settings.button_link }}"
+          {% endif %} 
+          class="button
+          {% if block.settings.button_style_secondary %} 
+            button--secondary
+          {% else %} 
+            button--primary
+          {% endif %}">
+            {{ block.settings.button_label | escape }}
+          </a>
+        {%- endif -%}
+      {%- endcase -%}
+    {%- endfor -%}
 
     <div class="single-block-image single-image__media--placeholder placeholder">
       {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
     </div>
-  {% endfor %}
 </div>
 
     <!-- {
