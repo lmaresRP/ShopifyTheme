@@ -38,21 +38,18 @@ div.single-block > * {
 
 <div class="single-block section-{{ section.id }}-padding page-width">
   {% for block in section.blocks %}
-    
-
     <div class="single-block__icon">
       {% render 'icon-shell' %}
     </div>
-    
-    <h2 class="single-image__heading ">
-      {{ block.settings.heading | escape }}
-    </h2>
-    <h3 class="single-image__caption">{{ block.settings.caption | escape }}</h3>
+    {% case block.type %}
+    {%- when 'heading' -%}
+      <h2 class="single-image__heading ">
+        {{ block.settings.heading | escape }}
+      </h2>
+    {%- when 'caption' -%}
+      <h3 class="single-image__caption">{{ block.settings.caption | escape }}</h3>
 
-    <div class="single-block-image single-image__media--placeholder placeholder">
-      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-    </div>
-
+    {%- when 'button' -%}
       {%- if block.settings.button_label != blank -%}
         <a
         {% if block.settings.button_link == blank %} 
@@ -69,7 +66,11 @@ div.single-block > * {
           {{ block.settings.button_label | escape }}
         </a>
       {%- endif -%}
-    
+    {%- endcase -%}
+
+    <div class="single-block-image single-image__media--placeholder placeholder">
+      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+    </div>
   {% endfor %}
 </div>
 
