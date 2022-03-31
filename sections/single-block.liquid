@@ -23,7 +23,7 @@ div.single-block > * {
   margin-bottom: 20px;
 }
 
-div.placeholder {
+div.block-image.placeholder {
   max-height: 438px;
   max-width: 980px;
   display: flex;
@@ -50,7 +50,7 @@ div.placeholder {
 }
 
 @media screen and (max-width: 750px) {
-  div.placeholder {
+  div.block-image.placeholder {
     max-height: 289px;
     max-width: 245px;
   }
@@ -88,7 +88,7 @@ div.placeholder {
         <h3 class="single-block__caption">{{ block.settings.caption | escape }}</h3>
 
       {%- when 'block_image' -%}
-        <div class="{% if block.settings.block_image != blank %} single-block-image {% else %} placeholder{% endif %}">
+        <div class="{% if block.settings.block_image != blank %} single-block-image {% else %} block-image placeholder{% endif %}">
 
           {%- if block.settings.block_image != blank -%}
             <img src="{{ block.settings.block_image | image_url }}" class="single-block-image" alt="block image"/>
