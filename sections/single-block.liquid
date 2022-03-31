@@ -20,13 +20,16 @@
 div.single-block > * {
   text-align: center;
   margin: 0 auto;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .single-block-image {
   width: 100%;
-  height: auto;
   max-width: 980px;
+  height: auto;
+  max-height: 438px;
+  object-fit: cover;
+  object-position: 50% 70%;
   margin: 0 auto;
 }
 
@@ -62,8 +65,7 @@ div.single-block > * {
         <div class="single-block-image {% if block.settings.block_image != blank %} media {% else %}placeholder{% endif %}">
 
           {%- if block.settings.block_image != blank -%}
-            {{ block.settings.block_image | image_url: width: 2048 }}
-            <img src="{{ block.settings.block_image | image_url }}" alt="img"/>
+            <img src="{{ block.settings.block_image | image_url }}" class="single-block-image" alt="block image"/>
           {%- else -%}
             {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
           {%- endif -%}
