@@ -9,11 +9,51 @@
     },
     "faq": {
       "type": "faq",
+      "blocks": {
+        "c1352bd9-d705-43a5-b53f-ed398b0729dc": {
+          "type": "question-and-answer",
+          "settings": {
+            "question": "How do I get a refund?",
+            "answer": "Send us a copy of your reciept",
+            "color_scheme": "green"
+          }
+        },
+        "5c252b2f-e8ea-44ef-9cc9-86a84a03893f": {
+          "type": "question-and-answer",
+          "settings": {
+            "question": "Do I have to pay for shipping?",
+            "answer": "Use the coupon code FREE to get your first order free",
+            "color_scheme": "blue"
+          }
+        },
+        "3c6a2c1f-5e13-4e58-80b4-adca79d3fbc1": {
+          "type": "question-and-answer",
+          "settings": {
+            "question": "Can I order a custom scent?",
+            "answer": "Yes!",
+            "color_scheme": "magenta"
+          }
+        },
+        "5df64a5e-b2bc-478a-94ca-0a91bd5f74a3": {
+          "type": "question-and-answer",
+          "settings": {
+            "question": "This is a question?",
+            "answer": "This is an answer?",
+            "color_scheme": "black"
+          }
+        }
+      },
+      "block_order": [
+        "c1352bd9-d705-43a5-b53f-ed398b0729dc",
+        "5c252b2f-e8ea-44ef-9cc9-86a84a03893f",
+        "3c6a2c1f-5e13-4e58-80b4-adca79d3fbc1",
+        "5df64a5e-b2bc-478a-94ca-0a91bd5f74a3"
+      ],
       "settings": {
-        "padding_top": 28,
-        "padding_bottom": 28,
         "heading": "FAQ Page is Here!",
-        "description": "Here are some frequently asked questions!"
+        "description": "Here are some frequently asked questions!",
+        "padding_top": 28,
+        "padding_bottom": 28
       }
     }
   },
