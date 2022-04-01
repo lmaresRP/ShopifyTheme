@@ -1,0 +1,231 @@
+<link rel="stylesheet" href="{{ 'component-rte.css' | asset_url }}" media="print" onload="this.media='all'">
+
+<noscript>{{ 'section-main-page.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
+
+{%- style -%}
+.section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+  padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+}
+
+@media screen and (min-width: 750px) {
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+}
+
+div.editorial__header > * {
+  margin: 0 auto;
+  margin-bottom: 15px;
+}
+
+.editorial__title {
+  margin: 0 auto;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.editorial {
+  display: grid;
+  grid-template-columns: [card1-start] 40vw [card1-end card2-start] 60vw [card2-end];
+  justify-content: center;
+  padding: 0 15px;
+}
+
+.editorial__card{
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  margin: 0 auto;
+}
+
+.editorial__header {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
+
+div.editorial__card:first-child div.editorial__image-empty.placeholder {
+  max-height: 452px;
+  max-width: 434px;
+  display: flex;
+  background: blue;
+}
+
+div.editorial__card:last-child div.editorial__image-empty.placeholder {
+  max-height: 438px;
+  max-width: 640px;
+  display: flex;
+  background: red;
+}
+
+div.editorial__card:first-child img.editorial__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 452px;
+  max-width: 434px;
+  object-fit: cover;
+  background: blue;
+}
+
+div.editorial__card:last-child img.editorial__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 438px;
+  max-width: 640px;
+  object-fit: cover;
+  background: blue;
+}
+
+div.editorial__card:last-child .editorial__header{
+  order: 2;
+}
+
+div.editorial__card:last-child .ed-img{
+  order: 1;
+  margin-bottom: 15px;
+}
+
+{%- endstyle -%}
+
+<div class="editorial__container">
+  <h2 class="editorial__title">
+    {{ section.settings.heading | escape }}
+  </h2>
+  <div class="editorial section-{{ section.id }}-padding">
+    {%- for block in section.blocks -%}
+      <div class="editorial__card">
+        <div class="editorial__header">
+          <h3 class="editorial__header--heading">
+            {{ block.settings.heading | escape }}
+          </h3>
+  
+          <p class="editorial__header--paragraph">
+            {{ block.settings.paragraph | escape }}
+          </p>
+  
+          <div class="editorial__btn">
+            {%- if block.settings.button_label != blank -%}
+            <a
+            {% if block.settings.button_link == blank %} 
+              role="link" aria-disabled="true"
+            {% else %} 
+              href="{{ block.settings.button_link }}"
+            {% endif %} 
+            class="button
+            {% if block.settings.button_style_secondary %} 
+              button--secondary
+            {% else %} 
+              button--primary
+            {% endif %}">
+              {{ block.settings.button_label | escape }}
+            </a>
+            {%- endif -%}
+          </div>
+        </div>
+        <div class="ed-img {% if block.settings.editorial_image != blank %} editorial__image {% else %} editorial__image-empty placeholder{% endif %}">
+          {%- if block.settings.editorial_image != blank -%}
+            <img src="{{ block.settings.editorial_image | image_url }}" class="editorial__image" alt="editorial image"/>
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+    "name": "editorial",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+      {
+        "type": "header",
+        "content": "t:sections.all.padding.section_padding_heading"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "default": "Editorial",
+        "label": "Heading"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 36
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Card",
+        "type": "editorial_card",
+        "limit": 2,
+        "settings": [
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "Editorial Card",
+            "label": "Paragraph"
+          },
+          {
+            "type": "text",
+            "id": "paragraph",
+            "default": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda soluta numquam a, veniam veritatis commodi qui nam dicta ipsum nostrum, amet autem non eum, sint accusantium blanditiis officia. Maiores, asperiores.",
+            "label": "Paragraph"
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "default": "Button label",
+            "label": "Button Label",
+            "info": "Type in what you want your button to say"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button Link"
+          },
+          {
+            "type": "image_picker",
+            "id": "editorial_image",
+            "label": "Image"
+          }
+        ]
+      }
+    ],
+   "presets": [
+       {
+           "name":"editorial",
+            "blocks": [
+                {
+                  "type": "editorial_card"
+                },
+                {
+                  "type": "editorial_card"
+                }
+            ]
+       }
+    ]
+}
+{% endschema %}
