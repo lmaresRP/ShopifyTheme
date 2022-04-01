@@ -26,6 +26,7 @@ div.editorial__header > * {
     width: 100%;
     max-width: 400px;
     height: auto;
+    align-self: center;
 }
 
 div.editorial__card:first-child div.editorial__image-empty.placeholder {
@@ -81,6 +82,7 @@ div.editorial__card:first-child .ed-img {
     div.editorial__card:last-child img.editorial__image   {
         width: 100%;
         height: 315px;
+        max-width: 750px;
     }
 
     div.editorial__card:first-child .editorial__header{
