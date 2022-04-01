@@ -1,5 +1,7 @@
 <link rel="stylesheet" href="{{ 'component-rte.css' | asset_url }}" media="print" onload="this.media='all'">
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 <noscript>{{ 'section-main-page.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
 
@@ -31,7 +33,6 @@ div.editorial__header > * {
   display: grid;
   grid-template-columns: [card1-start] 40vw [card1-end card2-start] 60vw [card2-end];
   justify-content: center;
-  padding: 0 15px;
 }
 
 .editorial__card{
@@ -51,14 +52,12 @@ div.editorial__card:first-child div.editorial__image-empty.placeholder {
   max-height: 452px;
   max-width: 434px;
   display: flex;
-  background: blue;
 }
 
 div.editorial__card:last-child div.editorial__image-empty.placeholder {
   max-height: 438px;
   max-width: 640px;
   display: flex;
-  background: red;
 }
 
 div.editorial__card:first-child img.editorial__image {
@@ -68,7 +67,6 @@ div.editorial__card:first-child img.editorial__image {
   max-height: 452px;
   max-width: 434px;
   object-fit: cover;
-  background: blue;
 }
 
 div.editorial__card:last-child img.editorial__image {
@@ -78,27 +76,94 @@ div.editorial__card:last-child img.editorial__image {
   max-height: 438px;
   max-width: 640px;
   object-fit: cover;
-  background: blue;
 }
 
-div.editorial__card:last-child .editorial__header{
-  order: 2;
-}
-
-div.editorial__card:last-child .ed-img{
-  order: 1;
+.ed-img {
   margin-bottom: 15px;
 }
 
+div.editorial__card:first-child .editorial__header{
+  order: 1;
+}
+
+div.editorial__card:first-child .ed-img{
+  order: 2;
+}
+
+@media screen and (max-width: 750px) {
+  div.editorial__card:first-child div.editorial__image-empty.placeholder,
+  div.editorial__card:last-child div.editorial__image-empty.placeholder,
+  div.editorial__card:first-child img.editorial__image,
+  div.editorial__card:last-child img.editorial__image   {
+    width: 100%;
+    height: 315px;
+  }
+
+  div.editorial__card:first-child .editorial__header{
+    order: 2;
+  }
+  
+  div.editorial__card:first-child .ed-img{
+    order: 1;
+  }
+
+  .editorial {
+    grid-template-columns: 1fr;
+  }
+
+  .editorial__card{
+    padding: 0;
+    display: block;
+  }
+
+  .editorial__header {
+    padding-left: 30px;
+    padding-right: 30px;
+    text-align: center;
+  }
+
+}
+
 {%- endstyle -%}
+
+<script>
+  var elem = document.querySelector('.editorial');
+  var flkty = new Flickity( elem, {
+    // options
+    cellAlign: 'left',
+    contain: true
+  });
+
+  // element argument can be a selector string
+  //   for an individual element
+  var flkty = new Flickity( '.editorial', {
+    // options
+  });
+
+  $(document).ready(function(){
+    $('.editorial').flickity({
+      // options
+      cellAlign: 'left',
+      contain: true
+    });
+  });
+</script>
 
 <div class="editorial__container">
   <h2 class="editorial__title">
     {{ section.settings.heading | escape }}
   </h2>
-  <div class="editorial section-{{ section.id }}-padding">
+  <div class="editorial section-{{ section.id }}-padding" data-flickity='{ "cellAlign": "left", "contain": true }'>
     {%- for block in section.blocks -%}
       <div class="editorial__card">
+        <div class="ed-img {% if block.settings.editorial_image != blank %} editorial__image {% else %} editorial__image-empty placeholder{% endif %}">
+          {%- if block.settings.editorial_image != blank -%}
+            <img src="{{ block.settings.editorial_image | image_url }}" class="editorial__image" alt="editorial image"/>
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+
         <div class="editorial__header">
           <h3 class="editorial__header--heading">
             {{ block.settings.heading | escape }}
@@ -126,13 +191,6 @@ div.editorial__card:last-child .ed-img{
             </a>
             {%- endif -%}
           </div>
-        </div>
-        <div class="ed-img {% if block.settings.editorial_image != blank %} editorial__image {% else %} editorial__image-empty placeholder{% endif %}">
-          {%- if block.settings.editorial_image != blank -%}
-            <img src="{{ block.settings.editorial_image | image_url }}" class="editorial__image" alt="editorial image"/>
-          {%- else -%}
-            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-          {%- endif -%}
         </div>
       </div>
     {%- endfor -%}
