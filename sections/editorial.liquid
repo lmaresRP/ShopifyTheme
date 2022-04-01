@@ -1,9 +1,7 @@
-<link rel="stylesheet" href="{{ 'component-rte.css' | asset_url }}" media="print" onload="this.media='all'">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+<link rel="stylesheet" href="{{ 'component-editorial.css' | asset_url }}" media="print" onload="this.media='all'">
+
 <noscript>{{ 'section-main-page.css' | asset_url | stylesheet_tag }}</noscript>
-<noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-editorial.css' | asset_url | stylesheet_tag }}</noscript>
 
 {%- style -%}
 .section-{{ section.id }}-padding {
@@ -18,181 +16,57 @@
   }
 }
 
-div.editorial__header > * {
-  margin: 0 auto;
-  margin-bottom: 15px;
-}
-
-.editorial__title {
-  margin: 0 auto;
-  margin-bottom: 15px;
-  text-align: center;
-}
-
-.editorial {
-  display: grid;
-  grid-template-columns: [card1-start] 40vw [card1-end card2-start] 60vw [card2-end];
-  justify-content: center;
-}
-
-.editorial__card{
-  display: flex;
-  flex-direction: column;
-  padding: 30px;
-  margin: 0 auto;
-}
-
-.editorial__header {
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-}
-
-div.editorial__card:first-child div.editorial__image-empty.placeholder {
-  max-height: 452px;
-  max-width: 434px;
-  display: flex;
-}
-
-div.editorial__card:last-child div.editorial__image-empty.placeholder {
-  max-height: 438px;
-  max-width: 640px;
-  display: flex;
-}
-
-div.editorial__card:first-child img.editorial__image {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: 452px;
-  max-width: 434px;
-  object-fit: cover;
-}
-
-div.editorial__card:last-child img.editorial__image {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: 438px;
-  max-width: 640px;
-  object-fit: cover;
-}
-
-.ed-img {
-  margin-bottom: 15px;
-}
-
-div.editorial__card:first-child .editorial__header{
-  order: 1;
-}
-
-div.editorial__card:first-child .ed-img{
-  order: 2;
-}
-
-@media screen and (max-width: 750px) {
-  div.editorial__card:first-child div.editorial__image-empty.placeholder,
-  div.editorial__card:last-child div.editorial__image-empty.placeholder,
-  div.editorial__card:first-child img.editorial__image,
-  div.editorial__card:last-child img.editorial__image   {
-    width: 100%;
-    height: 315px;
-  }
-
-  div.editorial__card:first-child .editorial__header{
-    order: 2;
-  }
-  
-  div.editorial__card:first-child .ed-img{
-    order: 1;
-  }
-
-  .editorial {
-    grid-template-columns: 1fr;
-  }
-
-  .editorial__card{
-    padding: 0;
-    display: block;
-  }
-
-  .editorial__header {
-    padding-left: 30px;
-    padding-right: 30px;
-    text-align: center;
-  }
-
-}
-
 {%- endstyle -%}
 
-<script>
-  var elem = document.querySelector('.editorial');
-  var flkty = new Flickity( elem, {
-    // options
-    cellAlign: 'left',
-    contain: true
-  });
-
-  // element argument can be a selector string
-  //   for an individual element
-  var flkty = new Flickity( '.editorial', {
-    // options
-  });
-
-  $(document).ready(function(){
-    $('.editorial').flickity({
-      // options
-      cellAlign: 'left',
-      contain: true
-    });
-  });
-</script>
-
-<div class="editorial__container">
+<div class="editorial__container section-{{ section.id }}-padding">
   <h2 class="editorial__title">
     {{ section.settings.heading | escape }}
   </h2>
-  <div class="editorial section-{{ section.id }}-padding" data-flickity='{ "cellAlign": "left", "contain": true }'>
-    {%- for block in section.blocks -%}
-      <div class="editorial__card">
-        <div class="ed-img {% if block.settings.editorial_image != blank %} editorial__image {% else %} editorial__image-empty placeholder{% endif %}">
-          {%- if block.settings.editorial_image != blank -%}
-            <img src="{{ block.settings.editorial_image | image_url }}" class="editorial__image" alt="editorial image"/>
-          {%- else -%}
-            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+  <div class="editorial">
+  {%- for block in section.blocks -%}
+    <div class="editorial__card" id="{{ block.id }}">
+      <div class="ed-img {% if block.settings.editorial_image != blank %} editorial__image {% else %} editorial__image-empty placeholder{% endif %}">
+        {%- if block.settings.editorial_image != blank -%}
+          <img src="{{ block.settings.editorial_image | image_url }}" class="editorial__image" alt="editorial image"/>
+        {%- else -%}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+      </div>
+
+      <div class="editorial__header">
+        <h3 class="editorial__header--heading ">
+          {{ block.settings.heading | escape }}
+        </h3>
+
+        <p class="editorial__header--paragraph">
+          {{ block.settings.paragraph | escape }}
+        </p>
+
+        <div class="editorial__btn">
+          {%- if block.settings.button_label != blank -%}
+          <a
+          {% if block.settings.button_link == blank %} 
+            role="link" aria-disabled="true"
+          {% else %} 
+            href="{{ block.settings.button_link }}"
+          {% endif %} 
+          class="button
+          {% if block.settings.button_style_secondary %} 
+            button--secondary
+          {% else %} 
+            button--primary
+          {% endif %}">
+            {{ block.settings.button_label | escape }}
+          </a>
           {%- endif -%}
         </div>
-
-        <div class="editorial__header">
-          <h3 class="editorial__header--heading">
-            {{ block.settings.heading | escape }}
-          </h3>
-  
-          <p class="editorial__header--paragraph">
-            {{ block.settings.paragraph | escape }}
-          </p>
-  
-          <div class="editorial__btn">
-            {%- if block.settings.button_label != blank -%}
-            <a
-            {% if block.settings.button_link == blank %} 
-              role="link" aria-disabled="true"
-            {% else %} 
-              href="{{ block.settings.button_link }}"
-            {% endif %} 
-            class="button
-            {% if block.settings.button_style_secondary %} 
-              button--secondary
-            {% else %} 
-              button--primary
-            {% endif %}">
-              {{ block.settings.button_label | escape }}
-            </a>
-            {%- endif -%}
-          </div>
-        </div>
       </div>
+    </div>
+  {%- endfor -%}
+  </div>
+  <div class="slider__nav">
+    {%- for block in section.blocks -%}
+    <a class="slider__navlink" href="#{{ block.id }}"></a>
     {%- endfor -%}
   </div>
 </div>
@@ -249,7 +123,7 @@ div.editorial__card:first-child .ed-img{
           {
             "type": "text",
             "id": "paragraph",
-            "default": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda soluta numquam a, veniam veritatis commodi qui nam dicta ipsum nostrum, amet autem non eum, sint accusantium blanditiis officia. Maiores, asperiores.",
+            "default": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
             "label": "Paragraph"
           },
           {
