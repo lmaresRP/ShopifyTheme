@@ -215,7 +215,7 @@
             "heading": "Editorial Card",
             "paragraph": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
             "button_label": "Button label",
-            "button_link": "shopify:\/\/collections\/all",
+            "button_link": "shopify:\/\/pages\/faq",
             "editorial_image": "shopify:\/\/shop_images\/person-stands-on-rocks-poking-out-of-the-ocean-shoreline.jpg"
           }
         },
@@ -225,7 +225,7 @@
             "heading": "Editorial Card",
             "paragraph": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
             "button_label": "Button label",
-            "button_link": "shopify:\/\/collections\/all",
+            "button_link": "shopify:\/\/pages\/faq",
             "editorial_image": "shopify:\/\/shop_images\/person-fishing-on-the-beach-is-silhouetted-at-sunset.jpg"
           }
         }
