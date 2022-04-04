@@ -153,46 +153,6 @@
         "padding_bottom": 36
       }
     },
-    "16490926478fc0ab89": {
-      "type": "single-block",
-      "blocks": {
-        "16490926470ce97dcf-0": {
-          "type": "heading",
-          "settings": {
-            "heading": "Single Block Heading"
-          }
-        },
-        "16490926470ce97dcf-1": {
-          "type": "caption",
-          "settings": {
-            "caption": "Single Block Caption"
-          }
-        },
-        "16490926470ce97dcf-2": {
-          "type": "block_image",
-          "settings": {
-            "block_image": "shopify:\/\/shop_images\/silhouetted-couples-look-out-at-a-city-at-night.jpg"
-          }
-        },
-        "16490926470ce97dcf-3": {
-          "type": "button",
-          "settings": {
-            "button_label": "Button label",
-            "button_link": "shopify:\/\/pages\/faq"
-          }
-        }
-      },
-      "block_order": [
-        "16490926470ce97dcf-0",
-        "16490926470ce97dcf-1",
-        "16490926470ce97dcf-2",
-        "16490926470ce97dcf-3"
-      ],
-      "settings": {
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "multicolumn": {
       "type": "multicolumn",
       "blocks": {
@@ -246,6 +206,46 @@
         "padding_bottom": 36
       }
     },
+    "16490926478fc0ab89": {
+      "type": "single-block",
+      "blocks": {
+        "16490926470ce97dcf-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "Single Block Heading"
+          }
+        },
+        "16490926470ce97dcf-1": {
+          "type": "caption",
+          "settings": {
+            "caption": "Single Block Caption"
+          }
+        },
+        "16490926470ce97dcf-2": {
+          "type": "block_image",
+          "settings": {
+            "block_image": "shopify:\/\/shop_images\/silhouetted-couples-look-out-at-a-city-at-night.jpg"
+          }
+        },
+        "16490926470ce97dcf-3": {
+          "type": "button",
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "shopify:\/\/pages\/faq"
+          }
+        }
+      },
+      "block_order": [
+        "16490926470ce97dcf-0",
+        "16490926470ce97dcf-1",
+        "16490926470ce97dcf-2",
+        "16490926470ce97dcf-3"
+      ],
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "1648850599b93620a9": {
       "type": "editorial",
       "blocks": {
@@ -287,8 +287,8 @@
     "featured_collection",
     "collage",
     "video",
-    "16490926478fc0ab89",
     "multicolumn",
+    "16490926478fc0ab89",
     "1648850599b93620a9"
   ]
 }
